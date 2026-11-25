@@ -9,6 +9,7 @@ from .models import (
     Education,
     Language,
     Conference,
+    Achievement,
 )
 
 
@@ -126,3 +127,19 @@ class ConferenceAdmin(admin.ModelAdmin):
     list_filter = ('is_active',)
     search_fields = ('name', 'location')
     ordering = ('-event_date',)
+
+
+@admin.register(Achievement)
+class AchievementAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'organization',
+        'date_label',
+        'location',
+        'is_active',
+        'display_order',
+    )
+    list_editable = ('is_active', 'display_order')
+    list_filter = ('is_active',)
+    search_fields = ('title', 'organization', 'description')
+    ordering = ('display_order',)

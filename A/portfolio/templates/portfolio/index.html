@@ -68,7 +68,9 @@
 							<label class="custom-control-label" for="darkSwitch">Dark Mode</label>
 						</div>
 			        </div><!--//dark-mode-switch-->
-	                <a class="btn btn-cta-primary" href="https://themes.3rdwavemedia.com/" target="_blank"><i class="fas fa-paper-plane"></i> Contact Me</a>        
+	              <a class="btn btn-cta-primary" href="mailto:manadana.rb93@gmail.com">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                   </a>
 	            </div><!--//col-->
 	        </div><!--//row-->         
         </div><!--//container-->
@@ -87,7 +89,8 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
-    
+
+               {% if latest_projects %}
                <section class="latest section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Latest Projects</h2>
@@ -195,7 +198,9 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->                
                 </section><!--//section-->
-                
+                {% endif %}
+
+                {% if other_projects %}
                 <section class="projects section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Other Projects</h2>
@@ -240,8 +245,9 @@
                                 <p>No other projects to display yet.</p>
                             {% endfor %}
                         </div><!--//content-->
-                    </div><!--//section-inner-->                 
+                    </div><!--//section-inner-->
                 </section><!--//section-->
+                {% endif %}
                 
                 <section class="experience section">
                     <div class="section-inner shadow-sm rounded">
@@ -293,9 +299,6 @@
                         data-show-footer="true">
                       </div>
 
-                        <div id="ghfeed" class="ghfeed">
-                        </div><!--//ghfeed-->
-                        
                     </div><!--//secton-inner-->
                 </section><!--//section-->
             </div><!--//primary-->
@@ -383,7 +386,8 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->                 
                 </aside><!--//section-->
-                
+
+                {% if testimonials %}
                 <aside class="testimonials aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Testimonials</h2>
@@ -427,6 +431,7 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
+                {% endif %}
                 
                 <aside class="education aside section">
                     <div class="section-inner shadow-sm rounded">
@@ -510,7 +515,8 @@
                     </div><!--//section-inner-->
                 </aside><!--//section-->
                 {% endif %}
-                
+
+                {% if conferences %}
                 <aside class="list conferences aside section">
                     <div class="section-inner shadow-sm rounded">
                         <h2 class="heading">Conferences</h2>
@@ -540,6 +546,52 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->
                 </aside><!--//section-->
+                {% endif %}
+
+                {% if achievements %}
+                    <aside class="list achievements aside section">
+                        <div class="section-inner shadow-sm rounded">
+                            <h2 class="heading">Awards &amp; Achievements</h2>
+                            <div class="content">
+                                <ul class="list-unstyled">
+                                    {% for achievement in achievements %}
+                                        <li class="mb-3">
+                                            <i class="fas fa-trophy"></i>
+
+                                            <strong>{{ achievement.title }}</strong>
+
+                                            {% if achievement.organization %}
+                                                <div class="text-muted">
+                                                    {{ achievement.organization }}
+                                                </div>
+                                            {% endif %}
+
+                                            {% if achievement.location or achievement.date_label %}
+                                                <div class="text-muted">
+                                                    {% if achievement.location %}
+                                                        {{ achievement.location }}
+                                                    {% endif %}
+
+                                                    {% if achievement.location and achievement.date_label %}
+                                                        —
+                                                    {% endif %}
+
+                                                    {{ achievement.date_label }}
+                                                </div>
+                                            {% endif %}
+
+                                            {% if achievement.description %}
+                                                <p class="mt-1 mb-0">
+                                                    {{ achievement.description }}
+                                                </p>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div><!--//content-->
+                        </div><!--//section-inner-->
+                    </aside><!--//section-->
+                {% endif %}
               
             </div><!--//secondary-->    
         </div><!--//row-->
@@ -548,19 +600,22 @@
     <!-- ******FOOTER****** --> 
     <footer class="footer">
         <div class="container text-center">
-                <!--/* This template is free as long as you keep the attribution link below. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-                <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-        </div><!--//container-->
-    </footer><!--//footer-->
+            <small class="copyright">
+                Built with <i class="fas fa-heart"></i> using Django
+                <span class="mx-2">|</span>
+                Designed by
+                <a href="https://themes.3rdwavemedia.com/" target="_blank" rel="noopener noreferrer">
+                    Xiaoying Riley
+                </a>
+            </small>
+        </div>
+    </footer>
  
     <!-- Javascript -->          
         <script type="text/javascript" src="{% static 'portfolio/assets/plugins/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'portfolio/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>    
     <script type="text/javascript" src="{% static 'portfolio/assets/plugins/vanilla-rss/dist/rss.global.min.js' %}"></script> 
     <script type="text/javascript" src="{% static 'portfolio/assets/plugins/dark-mode-switch/dark-mode-switch.min.js' %}"></script>
-    <!-- github activity plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
-    <script type="text/javascript" src="{% static 'portfolio/assets/plugins/github-activity/src/github-activity.js' %}"></script>
     <!-- custom js -->
     <script src="https://unpkg.com/github-contrib-graph@3.1.1/dist/browser.global.js"></script>
     <script type="text/javascript" src="{% static 'portfolio/assets/js/main.js' %}"></script>            

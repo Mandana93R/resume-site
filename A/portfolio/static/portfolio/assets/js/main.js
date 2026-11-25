@@ -37,10 +37,3 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 	);
 	rss.render();
 */
-
-
-/* Github Activity Feed */
-GitHubActivity.feed({
-    username: "Mandana93R",
-    selector: "#ghfeed"
-});

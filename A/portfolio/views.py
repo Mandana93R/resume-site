@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Profile, SocialLink, Project, Experience, Skill, Education, Language, Conference, Testimonial
+from .models import Profile, SocialLink, Project, Experience, Skill, Education, Language, Conference, Testimonial, Achievement
 
 
 def home(request):
@@ -13,6 +13,7 @@ def home(request):
     languages = Language.objects.all()
     conferences = Conference.objects.filter(is_active=True)
     testimonials = Testimonial.objects.filter(is_active=True)
+    achievements = Achievement.objects.filter(is_active=True)
 
     return render(
         request,
@@ -28,5 +29,6 @@ def home(request):
             'languages': languages,
             'conferences': conferences,
             'testimonials': testimonials,
+            'achievements': achievements,
         }
     )

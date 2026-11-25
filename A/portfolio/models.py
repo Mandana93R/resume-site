@@ -299,3 +299,45 @@ class Conference(models.Model):
         verbose_name = 'Conference'
         verbose_name_plural = 'Conferences'
         ordering = ['-event_date']
+
+
+class Achievement(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Title')
+    organization = models.CharField(
+        max_length=150,
+        blank=True,
+        verbose_name='Organization'
+    )
+    date_label = models.CharField(
+        max_length=50,
+        verbose_name='Date'
+    )
+    location = models.CharField(
+        max_length=150,
+        blank=True,
+        verbose_name='Location'
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name='Description'
+    )
+    certificate_url = models.URLField(
+        blank=True,
+        verbose_name='Certificate URL'
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name='Is Active'
+    )
+    display_order = models.PositiveIntegerField(
+        default=0,
+        verbose_name='Display Order'
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Achievement'
+        verbose_name_plural = 'Achievements'
+        ordering = ['display_order']
