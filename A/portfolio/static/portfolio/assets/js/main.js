@@ -6,7 +6,7 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 
 /* Vanilla RSS - https://github.com/sdepold/vanilla-rss */
-
+/*
 	const rss = new RSS(
 	    document.querySelector("#rss-feeds"),
 	    //Change this to your own rss feeds
@@ -36,11 +36,11 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 	    }
 	);
 	rss.render();
+*/
 
-    
-    /* Github Calendar - https://github.com/IonicaBizau/github-calendar */
-    new GitHubCalendar("#github-graph", "IonicaBizau", { responsive: true });
-    
-    
-    /* Github Activity Feed - https://github.com/caseyscarborough/github-activity */
-    GitHubActivity.feed({ username: "mdo", selector: "#ghfeed" });
+
+/* Github Activity Feed */
+GitHubActivity.feed({
+    username: "Mandana93R",
+    selector: "#ghfeed"
+});
